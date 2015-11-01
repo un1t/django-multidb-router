@@ -45,12 +45,6 @@ if getattr(settings, 'SLAVE_DATABASES'):
     dbs = list(settings.SLAVE_DATABASES)
     random.shuffle(dbs)
     slaves = itertools.cycle(dbs)
-    # Set the slaves as test mirrors of the master.
-    for db in dbs:
-        if LooseVersion(django.get_version()) >= LooseVersion('1.7'):
-            settings.DATABASES[db].get('TEST', {})['MIRROR'] = DEFAULT_DB_ALIAS
-        else:
-            settings.DATABASES[db]['TEST_MIRROR'] = DEFAULT_DB_ALIAS
 else:
     slaves = itertools.repeat(DEFAULT_DB_ALIAS)
 
