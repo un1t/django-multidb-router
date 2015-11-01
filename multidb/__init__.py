@@ -69,7 +69,7 @@ class MasterSlaveRouter(object):
         """Allow all relations, so FK validation stays quiet."""
         return True
 
-    def allow_syncdb(self, db, model):
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
         """Only allow syncdb on the master."""
         return db == DEFAULT_DB_ALIAS
 

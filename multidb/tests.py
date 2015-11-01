@@ -29,12 +29,12 @@ class MasterSlaveRouterTests(TestCase):
     def test_db_for_write(self):
         eq_(MasterSlaveRouter().db_for_write(None), DEFAULT_DB_ALIAS)
 
-    def test_allow_syncdb(self):
-        """Make sure allow_syncdb() does the right thing for both masters and
+    def test_allow_migrate(self):
+        """Make sure allow_migrate() does the right thing for both masters and
         slaves"""
         router = MasterSlaveRouter()
-        assert router.allow_syncdb(DEFAULT_DB_ALIAS, None)
-        assert not router.allow_syncdb(get_slave(), None)
+        assert router.allow_migrate(DEFAULT_DB_ALIAS, None, None)
+        assert not router.allow_migrate(get_slave(), None, None)
 
 
 class SettingsTests(TestCase):
